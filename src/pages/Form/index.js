@@ -1,5 +1,5 @@
 import React, { useLayoutEffect, useState } from "react";
-import { Container, Form, InputField, Logo, SaveButton, VideoBackground, ContainerTerms, LabelText, ToltipTerms, ToltipTextTerms } from './styles';
+import { Container, Form, InputField, Logo, SaveButton, VideoBackground, ContainerTerms, LabelText, ToltipTerms, ToltipTextTerms, VerificationBox } from './styles';
 import Video from '../../assets/videos/background.mp4';
 import ReCAPTCHA from "react-google-recaptcha";
 import api from "../../services/Api";
@@ -7,6 +7,7 @@ const apiToken = 'cdda18af2bf5b539215e5abf7eed1b6c02520afd';
 const App = () => {
     const [acceptTerms, setAcceptTerms] = useState(false);
     const [recaptchaTerms, setRecaptchaTerms] = useState(false);
+    const [emailValid, setEmailValid] = useState(true);
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
@@ -41,7 +42,7 @@ const App = () => {
                 }
             ],
         }
-        if (acceptTerms && recaptchaTerms) {
+        if (acceptTerms && recaptchaTerms && emailValid && name != '' && phone != '') {
             const response = await api.post(`persons?api_token=${apiToken}`, data)
             if (response.data.success) {
                 const leadData = {
@@ -68,6 +69,16 @@ const App = () => {
             }
         }
     }
+    const validEmail = (email) => {
+        setEmail(email)
+        const emailVerification = /^[\w+.]+@\w+\.\w{2,}(?:\.\w{2})?$/.test(email)
+        console.log(emailVerification)
+        if (emailVerification) {
+            setEmailValid(true)
+        } else {
+            setEmailValid(false)
+        }
+    }
     return (
         <Container>
             <VideoBackground id="videoBck" muted loop>
@@ -76,7 +87,11 @@ const App = () => {
             <Form onSubmit={submitRegister}>
                 <Logo src="https://www.xtree.com.vc/wp-content/themes/neori/xtree/images/xtree_logo_header.png" />
                 <InputField onChange={(text) => setName(text.target.value)} placeholder="Nome" value={name} />
-                <InputField onChange={(text) => setEmail(text.target.value)} placeholder="Email" value={email} />
+                <InputField onChange={(text) => validEmail(text.target.value)} placeholder="Email" value={email} />
+                {!emailValid &&
+                    <VerificationBox>
+                        O email fornecido não é valido
+                </VerificationBox>}
                 <InputField onChange={(text) => setPhone(text.target.value)} placeholder="Telefone" value={phone} />
                 <ContainerTerms>
                     <InputField onClick={() => setAcceptTerms(acceptTerms ? false : true)} style={{ width: '14px', height: '14px', padding: 0 }} type="checkbox" id="acceptTerms" />

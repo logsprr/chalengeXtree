@@ -43,6 +43,7 @@ const InputFieldMessage = styled.textarea`
 const Logo = styled.img`
     height: 100px;
     width: 100px;
+    margin:10px;
 `;
 
 const SaveButton = styled.button`
@@ -120,4 +121,13 @@ const ToltipTextTerms = styled.span`
         border-color: #555 transparent transparent transparent;
     }
 `;
-export { Container, Form, InputField, Logo, SaveButton, VideoBackground, InputFieldMessage, ContainerTerms, LabelText, ToltipTerms, ToltipTextTerms };
+
+const VerificationBox = styled.p`
+    color:red;
+    font-size: 16px;
+`;
+export {
+    Container, Form, InputField, Logo, SaveButton,
+    VideoBackground, InputFieldMessage, ContainerTerms,
+    LabelText, ToltipTerms, ToltipTextTerms, VerificationBox
+};
