@@ -29,7 +29,7 @@ const App = () => {
                     <LabelText for="acceptTerms">Aceito os termos</LabelText>
                 </ContainerTerms>
                 <ReCAPTCHA
-                    sitekey="Your client site key"
+                    sitekey="6LfIlv8ZAAAAACJNbAXPqtdYGtuYPHoIuTBiSK_Y"
                     onChange={onChange}
                 />
                 <SaveButton>
