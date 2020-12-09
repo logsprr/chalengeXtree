@@ -11,7 +11,8 @@ const Container = styled.div`
 const Form = styled.form`
     background-color: #021E19;
     width: 400px;
-    height:400px;
+    height:auto;
+    min-height:400px;
     display: flex;
     flex-direction:column;
     align-items:center;
@@ -49,11 +50,11 @@ const SaveButton = styled.button`
     height: 40px;
     background-color:#0FDC62;
     color: #000;
+    font-size:18px;
     border:none;
     border-radius:8px;
     margin-top:10px;
     font-weight: 600;
-    font-family: 'Campton-Book';
 `;
 
 const VideoBackground = styled.video`
@@ -69,7 +70,7 @@ const ContainerTerms = styled.div`
     display:flex;
     justify-content:center;
     align-items:center;
-    width:60%;
+    width:70%;
     margin-top:10px;
 `;
 
@@ -77,4 +78,46 @@ const LabelText = styled.label`
     color: white;
     margin: 5px 0 0 5px;
 `;
-export { Container, Form, InputField, Logo, SaveButton, VideoBackground, InputFieldMessage, ContainerTerms, LabelText };
+
+const ToltipTerms = styled.div`
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+    margin-top:5px;
+
+    &:hover {
+        span{
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+`;
+
+const ToltipTextTerms = styled.span`
+    visibility: hidden;
+    width: 220px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+
+    &:after{
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: #555 transparent transparent transparent;
+    }
+`;
+export { Container, Form, InputField, Logo, SaveButton, VideoBackground, InputFieldMessage, ContainerTerms, LabelText, ToltipTerms, ToltipTextTerms };
