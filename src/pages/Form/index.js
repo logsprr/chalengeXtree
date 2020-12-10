@@ -3,6 +3,7 @@ import { Container, Form, InputField, Logo, SaveButton, VideoBackground, Contain
 import Video from '../../assets/videos/background.mp4';
 import ReCAPTCHA from "react-google-recaptcha";
 import api from "../../services/Api";
+import Axios from "axios";
 const apiToken = 'cdda18af2bf5b539215e5abf7eed1b6c02520afd';
 const App = () => {
     const [acceptTerms, setAcceptTerms] = useState(false);
@@ -42,7 +43,7 @@ const App = () => {
                 }
             ],
         }
-        if (acceptTerms && recaptchaTerms && emailValid && name != '' && phone != '') {
+        if (acceptTerms && recaptchaTerms && emailValid && name !== '' && phone !== '') {
             const response = await api.post(`persons?api_token=${apiToken}`, data)
             if (response.data.success) {
                 const leadData = {
@@ -56,6 +57,8 @@ const App = () => {
                     setPhone('')
                     setRecaptchaTerms(false);
                     setAcceptTerms(false);
+                    const emailSend = await sendEmail();
+                    console.log(emailSend);
                     alert("Seus dados foram salvo com sucesso")
                 }
             } else {
@@ -78,6 +81,20 @@ const App = () => {
         } else {
             setEmailValid(false)
         }
+    }
+
+    const sendEmail = async (email) => {
+        const response = await Axios.post('https://api.emailjs.com/api/v1.0/email/send', {
+            user_id: "user_0fN8pUeuggTiJGQ4rC9AP",
+            service_id: "service_6s10495",
+            template_id: "template_1q7vxqq",
+            template_params: {
+                from_name: 'xTree',
+                to_name: name,
+                from_email: 'corinthiaswwyy@gmail.com'
+            }
+        })
+        return response;
     }
     return (
         <Container>

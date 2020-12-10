@@ -7,6 +7,8 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.0",
+    "emailjs": "^3.4.0",
+    "emailjs-com": "^2.6.4",
     "jquery": "^3.5.1",
     "jquery-mask-plugin": "^1.14.16",
     "react": "^17.0.1",
