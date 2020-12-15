@@ -52,12 +52,12 @@ const App = () => {
                 }
                 const leadResponse = await api.post(`leads?api_token=${apiToken}`, leadData)
                 if (leadResponse.data.success) {
+                    const emailSend = await sendEmail(email);
                     setName('');
                     setEmail('');
                     setPhone('')
                     setRecaptchaTerms(false);
                     setAcceptTerms(false);
-                    const emailSend = await sendEmail();
                     console.log(emailSend);
                     alert("Seus dados foram salvo com sucesso")
                 }
@@ -89,7 +89,7 @@ const App = () => {
             service_id: "service_6s10495",
             template_id: "template_1q7vxqq",
             template_params: {
-                from_name: 'xTree',
+                from_name: email,
                 to_name: name,
                 from_email: 'corinthiaswwyy@gmail.com'
             }
