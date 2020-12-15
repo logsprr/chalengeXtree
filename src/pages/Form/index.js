@@ -89,9 +89,8 @@ const App = () => {
             service_id: "service_6s10495",
             template_id: "template_1q7vxqq",
             template_params: {
-                from_name: email,
                 to_name: name,
-                from_email: 'corinthiaswwyy@gmail.com'
+                to_email: email
             }
         })
         return response;
@@ -111,7 +110,7 @@ const App = () => {
                 </VerificationBox>}
                 <InputField onChange={(text) => setPhone(text.target.value)} placeholder="Telefone" value={phone} />
                 <ContainerTerms>
-                    <InputField onClick={() => setAcceptTerms(acceptTerms ? false : true)} style={{ width: '14px', height: '14px', padding: 0 }} type="checkbox" id="acceptTerms" />
+                    <InputField onClick={() => setAcceptTerms(acceptTerms == true ? false : true)} style={{ width: '14px', height: '14px', padding: 0 }} type="checkbox" id="acceptTerms" />
                     <ToltipTerms>
                         <LabelText htmlFor="acceptTerms">Aceito os termos da politica de dados</LabelText>
                         <ToltipTextTerms>
