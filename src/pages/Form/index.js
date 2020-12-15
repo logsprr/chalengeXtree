@@ -110,7 +110,7 @@ const App = () => {
                 </VerificationBox>}
                 <InputField onChange={(text) => setPhone(text.target.value)} placeholder="Telefone" value={phone} />
                 <ContainerTerms>
-                    <InputField onClick={() => setAcceptTerms(acceptTerms == true ? false : true)} style={{ width: '14px', height: '14px', padding: 0 }} type="checkbox" id="acceptTerms" />
+                    <InputField checked={acceptTerms} onClick={() => setAcceptTerms(acceptTerms == true ? false : true)} style={{ width: '14px', height: '14px', padding: 0 }} type="checkbox" id="acceptTerms" />
                     <ToltipTerms>
                         <LabelText htmlFor="acceptTerms">Aceito os termos da politica de dados</LabelText>
                         <ToltipTextTerms>
